@@ -72,8 +72,4 @@ public class NBody {
         }
         return planets;
     }
-
-    public static void draw() {
-
-    }
 }
