@@ -18,24 +18,14 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        if (firstIndex == -1) {
-            firstIndex = lastIndex = 0;
-            items[firstIndex] = item;
-            return;
-        }
-        firstIndex = firstIndex-1 < 0 ? 7 : firstIndex-1;
         items[firstIndex] = item;
+        firstIndex = firstIndex-1 < 0 ? 7 : firstIndex-1;
         size++;
     }
 
     public void addLast(T item) {
-        if (firstIndex == -1) {
-            firstIndex = lastIndex = 0;
-            items[lastIndex] = item;
-            return;
-        }
-        lastIndex = (lastIndex + 1) % 8;
         items[lastIndex] = item;
+        lastIndex = (lastIndex + 1) % 8;
         size++;
     }
 
@@ -55,17 +45,19 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        T item = items[firstIndex];
+        if (size == 0) return null;
+
         firstIndex = (firstIndex + 1) % 8;
         size--;
-        return item;
+        return items[firstIndex];
     }
 
     public T removeLast() {
-        T item = items[lastIndex];
+        if (size == 0) return null;
+
         lastIndex = lastIndex-1 < 0 ? 7 : lastIndex-1;
         size--;
-        return item;
+        return items[lastIndex];
     }
 
     public T get(int i) {
